@@ -32,17 +32,17 @@ class LdapController < ApplicationController
                 query = "select * from users where email LIKE '" + email + "@unal.edu.co'"
                 results = ActiveRecord::Base.connection.exec_query(query)
                 if results.present?
-                    @newAuth = ObjAuth.new(email, password, "true")
+                    @newAuth = ObjAuth.new(email, password, "1")
                     puts("Autenticación satisfactoria.")
                     render json: @newAuth
                 else
                     puts("Autenticación no satisfactoria, el usuario no se encuentra registrado en la base de datos.")
-                    @newAuth = ObjAuth.new(email, password, "false")
+                    @newAuth = ObjAuth.new(email, password, "0")
                     render json: @newAuth
                 end
             else
                 puts("Autenticación no satisfactoria, el usuario no se encuentra registrado en el LDAP.")
-                @newAuth = ObjAuth.new(email, password, "false")
+                @newAuth = ObjAuth.new(email, password, "2")
                 render json: @newAuth
             end
         end
