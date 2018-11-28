@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user,  only: [:index, :update, :current]
+  before_action :authenticate_user,  only: [:index, :update, :check]
   before_action :authorize_delete, only: [:destroy]
   before_action :authorize,          only: [:update]
 
@@ -7,9 +7,10 @@ class UsersController < ApplicationController
     render json: {status: 200, msg: 'Logged-in'}
   end
 
-  def current
+  def check
     current_user.update!(last_login: Time.now)
-    render json: current_user
+    #render json: { user: current_user, answer: true, status: 200 }
+    render json: { id: current_user.id, username: current_user.username }
   end
 
   def create
