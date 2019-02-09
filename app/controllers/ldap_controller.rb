@@ -8,7 +8,7 @@ class LdapController < ApplicationController
             auth: {
                 method: :simple,
                 dn: "cn=admin,dc=arqsoft,dc=unal,dc=edu,dc=co",
-                password: "admin"
+                password: "unriskunal"
             }
         )
         return ldap.bind
@@ -20,7 +20,7 @@ class LdapController < ApplicationController
         email = email[/\A\w+/].downcase
         if connect()
             ldap = Net::LDAP.new(
-                host: '34.76.121.152', 
+                host: '34.76.121.152',
 
                 port: 389,
                 auth: {
