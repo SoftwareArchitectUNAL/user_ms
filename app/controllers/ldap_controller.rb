@@ -14,6 +14,8 @@ class LdapController < ApplicationController
         return ldap.bind
     end
 
+    
+
     def create
         email = params[:email]
         password = params[:password]
