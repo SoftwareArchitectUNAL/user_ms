@@ -1,5 +1,5 @@
-FROM ruby:2.3.0
-RUN apt-get update -qq && apt-get install -y build-essential libmysqlclient-dev
+FROM ruby:2.5
+
 RUN mkdir /users_ms
 WORKDIR /users_ms
 
@@ -8,5 +8,8 @@ ADD Gemfile.lock /users_ms/Gemfile.lock
 
 RUN bundle install
 ADD . /users_ms
-
-EXPOSE 3396
+RUN apt update
+RUN apt install mysql-client -y
+EXPOSE 3009
+RUN chmod +x entrypoint.sh
+CMD "./entrypoint.sh"
