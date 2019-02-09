@@ -19,6 +19,5 @@ services:
       - "3396:3396"
     depends_on:
       - users_db
-    links:
-        - users_db
+  
     network_mode: "host"
