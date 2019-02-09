@@ -10,14 +10,10 @@ services:
       MYSQL_PASSWORD: 123
       MYSQL_DATABASE: users
       MYSQL_HOST: users_db
-    network_mode: "host"
-
   users_ms:
     build: .
-    # command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 3396 -b '0.0.0.0'"
+    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 3396 -b '0.0.0.0'"
     ports:
       - "3396:3396"
     depends_on:
       - users_db
-  
-    network_mode: "host"

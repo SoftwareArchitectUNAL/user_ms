@@ -8,8 +8,5 @@ ADD Gemfile.lock /users_ms/Gemfile.lock
 
 RUN bundle install
 ADD . /users_ms
-RUN apt update
-RUN apt install mysql-client -y
-EXPOSE 3009
-RUN chmod +x entrypoint.sh
-CMD "./entrypoint.sh"
+
+EXPOSE 3306
